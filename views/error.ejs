@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+<style>
+    /* Container for centering the video block */
+    .video-container {
+        position: absolute;
+        top: 20px; /* Distance from the top of the viewport */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        z-index: 2; /* Ensure it is above the error content */
+    }
+
+    /* Styling for the video block */
+    .video-block {
+        width: 200px; /* Adjust size as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .video-block video {
+        width: 100%; /* Fit the video block */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Optional: add rounded corners */
+    }
+
+    /* Styling for the error message */
+    .error-content {
+        position: relative;
+        z-index: 1; /* Ensure it's below the video block */
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        border-radius: 8px;
+        margin-top: 100px; /* Space between video and text, adjust as needed */
+    }
+</style>
+
+<!-- Video Container -->
+<div class="video-container mt-4">
+    <div class="video-block">
+        <video autoplay muted loop>
+            <source src="/assets/Error.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- Error Content -->
+<div class="row">
+    <div class="col-6 offset-3 error-content">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading mytext"><%= err.message %></h4>    
+        </div>
+    </div>
+</div>

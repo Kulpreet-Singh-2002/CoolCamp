@@ -1,0 +1,66 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        
+
+        <form id="newCampgroundForm" action="/campgrounds" method="post" class="validated-form" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div> 
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image(s)</label>
+                <input class="form-control" type="file" name="image" id="image" multiple>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <div class="input-group">
+                    <span class="input-group-text">&#8377;</span>
+                    <input type="number" class="form-control" id="price" name="campground[price]" aria-label="Amount (to the nearest dollar)" required>
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <!-- Loader element (hidden by default) -->
+        <div id="loader" class="text-center" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Adding campground, please wait...</p>
+        </div>
+
+            <div class="mb-3"> 
+                <button type="submit" class="btn btn-success">ADD Campground</button>
+            </div>
+        </form>
+        <div class="mb-3"> 
+            <a href="/campgrounds" class="btn btn-danger">BACK</a>
+        </div>
+    </div>
+</div>
+
+<!-- Add JavaScript for showing the loader -->
+<script>
+    document.getElementById('newCampgroundForm').addEventListener('submit', function() {
+        // Show the loader
+        document.getElementById('loader').style.display = 'block';
+    });
+</script>

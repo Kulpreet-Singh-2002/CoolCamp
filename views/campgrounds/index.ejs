@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %>
+
+<div id="cluster-map"></div>
+
+<div class="container">
+<h1>All Campgrounds</h1>
+<div>
+    <a href="/campgrounds/new" class="btn btn-success mb-3">ADD new campground</a>
+</div>
+
+<% campgrounds.reverse().forEach(campground => { %>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <% if(campground.images.length){ %>
+                    <img src="<%= campground.images[0].url %>" alt="<%= campground.images[0].url %>" class="img-fluid" style="width: 400px; height: 400px;">
+                <%}else{ %>
+                    <img src="https://media.istockphoto.com/id/1352945762/vector/no-image-available-like-missing-picture.jpg?s=612x612&w=0&k=20&c=4X-znbt02a8EIdxwDFaxfmKvUhTnLvLMv1i1f3bToog=" alt="Enable to show/No image available" class="img-fluid" style="width: 400px; height: 400px;">
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= campground.title %></h5>
+                    <p class="card-text"><%= campground.description %></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= campground.location %></small>
+                    </p>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }); %>
+</div>
+<script>
+const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+// niche wali line ko mat edit karna
+const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
+</script>
+<script src="/javascripts/clusterMap.js"></script>
